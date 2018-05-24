@@ -1,0 +1,56 @@
+format_version: 2
+common:
+  parent: &parent
+    Apipeline:
+      pipeline: A
+      stage: apply
+  plan: &plan
+    clean_workspace: true
+    jobs:
+      plan:
+        tasks:
+        - script: |
+            echo "PLAN!"
+  apply: &apply
+    approval:
+      type: manual # Require someone in the UI to manually approve the execution of this stage
+    clean_workspace: true
+    jobs:
+      apply:
+        tasks:
+        - script: |
+            echo "APPLY!"
+  materials: &materials
+    redbutton:
+      type: configrepo
+      destination: repo
+pipelines:
+  A:
+    group: GOgogadgetCD
+    materials:
+      <<: *materials
+    stages:
+      - plan:
+          <<: *plan
+      - apply:
+          <<: *apply
+  B:
+    group: GOgogadgetCD
+    materials:
+      <<: *materials
+      <<: *Apipeline
+    stages:
+      - plan:
+          <<: *plan
+      - apply:
+          <<: *apply
+  C:
+    group: GOgogadgetCD
+    materials:
+      <<: *materials
+      <<: *Apipeline
+    stages:
+      - plan:
+          <<: *plan
+      - apply:
+          <<: *apply
