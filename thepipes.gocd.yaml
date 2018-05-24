@@ -21,7 +21,7 @@ common:
         - script: |
             echo "APPLY!"
   materials: &materials
-    redbutton:
+    thing:
       type: configrepo
       destination: repo
 pipelines:
