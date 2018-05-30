@@ -22,7 +22,8 @@ common:
             echo "APPLY!"
   materials: &materials
     thing:
-      type: configrepo
+      branch: master
+      git: https://github.com/plainsane/gogogadgetcd-material.git
       destination: repo
 pipelines:
   A:
