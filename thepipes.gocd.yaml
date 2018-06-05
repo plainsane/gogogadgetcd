@@ -6,10 +6,14 @@ common:
       stage: apply
   plan: &plan
     clean_workspace: true
+    secure_variables: 
+      user: r9U437bgNpU=
+      password: FOnbtbHGpS3UnoDmfYgE1g==
     jobs:
       plan:
         tasks:
         - script: |
+            curl -u ${user}:${password}${GO_SERVER_URL}/run/{$GO_PIPELINE_NAME}/${GO_PIPELINE_COUNTER}/apply
             echo "#{theName} PLAN!"
   apply: &apply
     approval:
