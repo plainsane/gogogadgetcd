@@ -7,8 +7,8 @@ common:
   plan: &plan
     clean_workspace: true
     secure_variables: 
-      user: r9U437bgNpU=
-      password: FOnbtbHGpS3UnoDmfYgE1g==
+      user: "90mE/w2Ux+xlqFipNLdINA=="
+      password: "8sXkDq7gmd56t2NnkJExsg=="
     jobs:
       plan:
         tasks:
@@ -18,6 +18,8 @@ common:
   apply: &apply
     approval:
       type: manual # Require someone in the UI to manually approve the execution of this stage
+      users:
+        - superman
     clean_workspace: true
     jobs:
       apply:
