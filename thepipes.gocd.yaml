@@ -7,7 +7,7 @@ common:
   plan: &plan
     clean_workspace: true
     jobs:
-      #{theName}:
+      \#{theName}:
         tasks:
         - script: |
             echo "#{theName} PLAN!"
@@ -38,6 +38,8 @@ common:
 pipelines:
   A:
     group: GOgogadgetCD
+    parameters:
+      theName: A
     materials:
       <<: *materials
     stages:
