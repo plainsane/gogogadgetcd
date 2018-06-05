@@ -7,10 +7,10 @@ common:
   plan: &plan
     clean_workspace: true
     jobs:
-      plan:
+      #{theName}:
         tasks:
         - script: |
-            echo "PLAN!"
+            echo "#{theName} PLAN!"
   apply: &apply
     approval:
       type: manual # Require someone in the UI to manually approve the execution of this stage
@@ -25,6 +25,16 @@ common:
       branch: master
       git: https://github.com/plainsane/gogogadgetcd-material.git
       destination: repo
+  basePipeline: &basePipeline
+    materials:
+      <<: *materials
+      <<: *parent
+    stages:
+      - plan:
+          <<: *plan
+      - apply:
+          <<: *apply
+
 pipelines:
   A:
     group: GOgogadgetCD
@@ -37,21 +47,11 @@ pipelines:
           <<: *apply
   B:
     group: GOgogadgetCD
-    materials:
-      <<: *materials
-      <<: *parent
-    stages:
-      - plan:
-          <<: *plan
-      - apply:
-          <<: *apply
+    parameters:
+      theName: B
+    <<: *basePipeline
   C:
     group: GOgogadgetCD
-    materials:
-      <<: *materials
-      <<: *parent
-    stages:
-      - plan:
-          <<: *plan
-      - apply:
-          <<: *apply
+    parameters:
+      theName: C
+    <<: *basePipeline
