@@ -7,7 +7,7 @@ common:
   plan: &plan
     clean_workspace: true
     jobs:
-      \#{theName}:
+      plan:
         tasks:
         - script: |
             echo "#{theName} PLAN!"
