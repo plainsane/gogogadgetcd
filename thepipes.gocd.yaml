@@ -13,7 +13,7 @@ common:
       plan:
         tasks:
         - script: |
-            curl --insecure -u ${user}:${password} ${GO_SERVER_URL}/run/{$GO_PIPELINE_NAME}/${GO_PIPELINE_COUNTER}/apply
+            curl --insecure -u ${user}:${password} -d "" -X POST ${GO_SERVER_URL}/run/{$GO_PIPELINE_NAME}/${GO_PIPELINE_COUNTER}/apply
             echo "#{theName} PLAN!"
   apply: &apply
     approval:
