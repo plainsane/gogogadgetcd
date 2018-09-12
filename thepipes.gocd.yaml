@@ -1,7 +1,6 @@
 format_version: 2
 common:
   storeProperty: &storeProps |
-      curl --insecure -u ${user}:${password} -d "value=1.1.1" -X POST -H 'Confirm: true' ${GO_SERVER_URL}/properties/{$GO_PIPELINE_NAME}/${GO_PIPELINE_COUNTER}/${GO_STAGE_NAME}/${GO_STAGE_COUNTER}/${GO_JOB_NAME}/version
       echo "#{theName} PLAN!"
   parent: &parent
     Apipeline:
@@ -9,9 +8,6 @@ common:
       stage: apply
   plan: &plan
     clean_workspace: true
-    secure_variables: 
-      user: "90mE/w2Ux+xlqFipNLdINA=="
-      password: "8sXkDq7gmd56t2NnkJExsg=="
     jobs:
       plan:
         tasks:
