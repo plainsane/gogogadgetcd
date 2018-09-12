@@ -46,6 +46,7 @@ common:
 
 pipelines:
   A:
+    tag: master
     group: GOgogadgetCD
     parameters:
       theName: A
